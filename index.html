@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fi" class="bg-[#09090b]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="i616kP9ZNyTGo4LOYnj6_wzUymQE3BXRDKSqClgA3C8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Terästupa - Terasmies100</title>
+    <meta name="description" content="Terästupa - Suomalainen Twitch-striimaaja, pelivideot ja yhteisö.">
+    <meta name="theme-color" content="#09090b">
+    
+    <meta property="og:image" content="https://static-cdn.jtvnw.net/jtv_user_pictures/952e486c-5f23-4baa-811c-99364c7064ed-profile_image-300x300.png">
+    <meta property="twitter:card" content="summary_large_image">
+    
+    <link rel="icon" type="image/png" href="https://cdn.streamelements.com/uploads/01kgsts5zz5vhpcv24ysf7y1sn.webp">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #09090b; color: #f4f4f5; font-family: 'Inter', sans-serif; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+        .heading-font, h2, h3 { font-family: 'Orbitron', sans-serif; letter-spacing: 0.05em; }
+        .mono-font { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel { background: #18181b; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5); }
+        .glass-nav { background: #09090b; border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 50; }
+        .nav-btn { padding: 8px 12px; border-radius: 99px; color: #a1a1aa; font-weight: 600; font-size: 0.8rem; transition: 0.2s; white-space: nowrap; }
+        .nav-btn:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .nav-btn.active-tab { background: #27272a; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+        .tab-content { display: none; animation: fadeIn 0.3s; }
+        .tab-content.active-content { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes barrelRoll { to { transform: rotate(360deg); } }
+        .animate-spin-fast { animation: barrelRoll 0.6s ease-in-out; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .cmd-line { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 4px 0; }
+    </style>
+</head>
+<body class="antialiased selection:bg-zinc-600 selection:text-white flex flex-col min-h-screen">
+
+    <nav class="glass-nav">
+        <div class="max-w-7xl mx-auto px-3 py-3 md:h-20 flex flex-col md:flex-row items-center justify-between gap-3">
+            <button onclick="triggerSpin(); changeTab('home')" class="flex items-center gap-3 cursor-pointer self-start md:self-auto">
+                <img src="https://cdn.streamelements.com/uploads/01kgsts5zz5vhpcv24ysf7y1sn.webp" id="nav-logo" class="h-8 md:h-12 w-auto">
+                <span class="text-lg md:text-xl font-black tracking-tighter text-white heading-font uppercase">TERÄSTUPA</span>
+            </button>
+            <div class="flex flex-col-reverse md:flex-row items-center gap-3 w-full md:w-auto">
+                <div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-hide">
+                    <button onclick="changeTab('home')" id="tab-home" class="nav-btn active-tab" data-i18n="nav-home">Etusivu</button>
+                    <button onclick="changeTab('botti')" id="tab-botti" class="nav-btn" data-i18n="nav-bot">Botti</button>
+                    <button onclick="changeTab('aikataulu')" id="tab-aikataulu" class="nav-btn" data-i18n="nav-schedule">Aikataulu</button>
+                    <button onclick="changeTab('laitteisto')" id="tab-laitteisto" class="nav-btn" data-i18n="nav-hardware">Laitteisto</button>
+                    <button onclick="changeTab('suositukset')" id="tab-suositukset" class="nav-btn" data-i18n="nav-community">Suositukset</button>
+                </div>
+                <div class="flex gap-3 text-xs font-black absolute top-4 right-4 md:static">
+                    <button onclick="setLang('fi')" id="btn-fi" class="text-white">FI</button>
+                    <button onclick="setLang('sv')" id="btn-sv" class="hover:text-white">SV</button>
+                    <button onclick="setLang('en')" id="btn-en" class="hover:text-white">EN</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto pt-4 md:pt-8 pb-12 px-3 md:px-6">
+        
+        <div id="content-home" class="tab-content active-content">
+            <div class="glass-panel rounded-[2rem] md:rounded-3xl p-5 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-start">
+                <div class="lg:col-span-4 text-center">
+                    <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/952e486c-5f23-4baa-811c-99364c7064ed-profile_image-300x300.png" class="rounded-full w-32 h-32 md:w-64 md:h-64 mx-auto border-4 border-zinc-800 shadow-2xl">
+                </div>
+                <div class="lg:col-span-8 text-center lg:text-left">
+                    <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white mb-3 md:mb-6 uppercase italic tracking-tighter break-words font-sans leading-none">terasmies100</h1>
+                    <p data-i18n="profile-desc" class="text-sm md:text-lg text-zinc-300 mb-5 md:mb-8 font-light leading-tight md:leading-relaxed">Suomalainen sisällöntuottaja ja striimaaja.</p>
+                    <div class="w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-2xl border border-zinc-800 bg-black">
+                        <iframe src="https://player.twitch.tv/?channel=terasmies100&parent=terastupa.vip&parent=localhost&muted=true" height="100%" width="100%" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-botti" class="tab-content">
+            <div class="glass-panel rounded-[2rem] md:rounded-[3rem] p-6 md:p-12">
+                <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+                    <div class="w-full md:w-1/3 flex flex-col items-center">
+                        <div class="relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full blur opacity-40 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                            <div class="relative w-40 h-40 md:w-48 md:h-48 bg-black rounded-full border-4 border-zinc-800 flex items-center justify-center overflow-hidden">
+                                <span class="text-5xl md:text-6xl">🤖</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex items-center gap-2 px-4 py-1 bg-green-900/30 border border-green-500/30 rounded-full">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            <span class="text-[10px] md:text-xs font-bold text-green-400 uppercase tracking-widest">System Online</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/3 text-center md:text-left">
+                        <h2 class="text-3xl md:text-5xl font-black text-white uppercase mb-4 heading-font leading-none">Teräs<span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">BOT</span></h2>
+                        <p data-i18n="bot-desc" class="text-zinc-300 text-sm md:text-lg mb-8 leading-relaxed">Älykäs Python-pohjainen botti Discordiin. Sisältää Google Gemini AI -integraation, Twitch-seurannan ja täydelliset moderointityökalut.</p>
+                        
+                        <div class="bg-black/50 border border-zinc-700 rounded-xl p-4 md:p-6 font-mono text-xs md:text-sm text-zinc-400 shadow-inner text-left mb-6">
+                            <div class="flex gap-2 mb-4 border-b border-zinc-800 pb-2">
+                                <span class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-red-500"></span>
+                                <span class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-yellow-500"></span>
+                                <span class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500"></span>
+                                <span class="ml-auto text-xs opacity-50">terasbot_v2.5.py</span>
+                            </div>
+                            <ul class="space-y-2">
+                                <li class="flex gap-3"><span class="text-green-500">➜</span> <span data-i18n="bot-f1">AI-Integraatio: Älykkäät vastaukset Google Geminin avulla</span></li>
+                                <li class="flex gap-3"><span class="text-green-500">➜</span> <span data-i18n="bot-f2">Edistynyt Lokitus: Seuraa muokkauksia, poistoja ja liittymisiä</span></li>
+                                <li class="flex gap-3"><span class="text-green-500">➜</span> <span data-i18n="bot-f3">Viihde & Musiikki: Täysi tuki musiikille ja yhteisöpeleille</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-4 md:p-6 font-mono text-[10px] md:text-xs text-zinc-500 shadow-inner text-left">
+                            <div class="flex gap-2 mb-4 border-b border-zinc-800 pb-2 uppercase tracking-widest text-[9px] font-black">
+                                <span data-i18n="bot-cmd-title">Käyttöliittymä / Slash-Komennot</span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h4 class="text-[9px] text-zinc-600 font-bold uppercase mb-2 tracking-wider" data-i18n="cat-mod">🛡️ Moderointi & Hallinta</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/aseta_lokit</span> <span class="opacity-40" data-i18n="cmd-log">- Lokikanava</span></div>
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/jaahy</span> <span class="opacity-40" data-i18n="cmd-timeout">- Timeout jäsenelle</span></div>
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/tyhjenna</span> <span class="opacity-40" data-i18n="cmd-clear">- Poista viestejä</span></div>
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/aseta_tervetuloa</span> <span class="opacity-40" data-i18n="cmd-welcome">- Tervetulokanava</span></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h4 class="text-[9px] text-zinc-600 font-bold uppercase mb-2 tracking-wider" data-i18n="cat-ai">🤖 AI & Viihde</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/kysy</span> <span class="opacity-40" data-i18n="cmd-ai">- Gemini AI vastaus</span></div>
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/soita</span> <span class="opacity-40" data-i18n="cmd-play">- Musiikki YouTube/Spotify</span></div>
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/kysely</span> <span class="opacity-40" data-i18n="cmd-poll">- Luo äänestys</span></div>
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/tunnustus</span> <span class="opacity-40" data-i18n="cmd-confess">- Anonyymi viesti</span></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-[9px] text-zinc-600 font-bold uppercase mb-2 tracking-wider" data-i18n="cat-stream">📋 Striimit & Muut</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/twitch_lisaa</span> <span class="opacity-40" data-i18n="cmd-tw-add">- Seuraa striimaajaa</span></div>
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/kick_lista</span> <span class="opacity-40" data-i18n="cmd-kick-list">- Kick-seurannat</span></div>
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/ohje</span> <span class="opacity-40" data-i18n="cmd-help">- Kaikki komennot</span></div>
+                                    <div class="cmd-line flex justify-between"><span class="text-zinc-300">/stats</span> <span class="opacity-40" data-i18n="cmd-stats">- Botin tila</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex justify-center md:justify-start">
+                             <a href="https://discord.com/oauth2/authorize?client_id=1467498145041744165&permissions=8&integration_type=0&scope=bot" target="_blank" class="inline-flex items-center gap-2 text-white font-bold hover:text-green-400 transition text-sm md:text-base group">
+                                <span data-i18n="bot-btn">Kutsu botti palvelimellesi</span>
+                                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                             </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-aikataulu" class="tab-content">
+            <div class="glass-panel rounded-[2rem] md:rounded-[3rem] p-6 md:p-20 text-center">
+                <h3 data-i18n="discord-title" class="text-2xl md:text-6xl font-black text-white uppercase mb-4 md:mb-8 leading-tight">Milloin mennään?</h3>
+                <p data-i18n="discord-desc" class="text-zinc-400 text-sm md:text-lg mb-8 md:mb-12 max-w-xl mx-auto">Tarkat aikataulut ja ilmoitukset löydät Discord-palvelimeltamme.</p>
+                <a href="https://discord.gg/NkqeJykk4Y" target="_blank" class="bg-zinc-700 hover:bg-zinc-600 px-6 py-3 md:px-8 md:py-4 rounded-full text-white font-black uppercase inline-flex items-center gap-3 shadow-lg transition text-xs md:text-base">
+                    <span data-i18n="btn-discord-schedule">Discord Aikataulu</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="content-laitteisto" class="tab-content">
+            <div class="glass-panel rounded-[2rem] md:rounded-[3rem] p-4 md:p-16">
+                <div class="text-center mb-6 md:mb-10">
+                    <h3 data-i18n="hw-title" class="text-2xl md:text-4xl font-black text-white uppercase leading-none">Tietokoneen osat</h3>
+                    <p data-i18n="hw-copy-hint" class="text-[10px] md:text-xs text-zinc-500 mt-1 uppercase tracking-widest">(Klikkaa osaa kopioidaksesi)</p>
+                </div>
+                <div id="hw-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8"></div>
+                <div id="peripherals-container" class="mt-6 md:mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"></div>
+            </div>
+        </div>
+
+        <div id="content-suositukset" class="tab-content">
+            <div class="text-center mb-8 md:mb-12 mt-4 md:mt-8">
+                <h2 data-i18n="rec-title" class="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">Teris Suosittelee</h2>
+            </div>
+            <div id="rec-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"></div>
+        </div>
+        
+        <footer class="mt-8 md:mt-12 text-center glass-panel rounded-[2rem] md:rounded-[3rem] p-6 md:p-12">
+            <h3 data-i18n="footer-tag" class="text-[10px] md:text-xs font-black text-zinc-600 uppercase tracking-[0.2em] mb-6 md:mb-8">Digitaalinen jalanjälki</h3>
+            <div class="flex flex-wrap justify-center gap-3 md:gap-8 text-sm md:text-lg font-black text-white italic uppercase">
+                <a href="http://bit.ly/3Uvm4m7" target="_blank" class="hover:text-zinc-400 p-1">YouTube</a>
+                <a href="http://bit.ly/3C7BRk2" target="_blank" class="hover:text-zinc-400 p-1">Instagram</a>
+                <a href="https://discord.gg/Yat3sUzpZ3" target="_blank" class="hover:text-zinc-400 p-1">Discord</a>
+                <a href="https://discord.com/oauth2/authorize?client_id=1467498145041744165&permissions=8&integration_type=0&scope=bot" target="_blank" class="hover:text-emerald-400 text-emerald-500 p-1" data-i18n="link-bot">TeräsBot</a>
+            </div>
+            <p class="mt-8 md:mt-12 text-zinc-800 text-[9px] md:text-[10px] font-black uppercase tracking-tighter">© 2026 Terästupa | All Rights Reserved</p>
+        </footer>
+    </main>
+
+    <div id="toast" class="fixed bottom-6 right-6 left-6 md:left-auto bg-emerald-500 px-6 py-4 rounded-xl shadow-2xl transform translate-y-[150%] transition duration-300 z-50 text-center md:text-left">
+        <p class="font-bold text-sm uppercase text-white" data-i18n="toast-copied">Kopioitu!</p>
+    </div>
+
+    <script>
+        const config = { defaultLang: 'fi', defaultTab: 'home', siteTitle: 'Terästupa' };
+        const components = [{ key: 'hw-gpu', val: 'Nvidia RTX 4060' }, { key: 'hw-cpu', val: 'AMD Ryzen 7 5700X' }, { key: 'hw-ram', val: '48GB Kingston DDR4' }];
+        const storage = ['Kingston 1TB NVMe SSD', 'Samsung SSD 870 QVO 1TB', 'KINGSTON SA2000 1TB NVME', 'Seagate HDD 500GB'];
+        const peripherals = [
+            { key: 'hw-mic', val: 'Ampligame AM8 PROT' }, { key: 'hw-cam', val: 'Logitech C920 HD' },
+            { key: 'hw-kb', val: 'Logitech G610' }, { key: 'hw-mouse', val: 'G PRO Superlight 2' }
+        ];
+        
+        const streamers = [
+            { name: 'Baynat0r', img: 'https://static-cdn.jtvnw.net/jtv_user_pictures/e4213c8c-e398-45b8-b384-44c3536a0f80-profile_image-150x150.png', roleKey: 'role-fun', descKey: 'desc-fun', url: 'https://twitch.tv/baynat0r' },
+            { name: 'Samppapappa', img: 'https://static-cdn.jtvnw.net/jtv_user_pictures/039241d6-03f6-4d48-8f12-74483809bab8-profile_image-150x150.png', roleKey: 'role-crime', descKey: 'desc-crime', url: 'https://twitch.tv/samppapappa' },
+            { name: 'Punasipeli', img: 'https://static-cdn.jtvnw.net/jtv_user_pictures/7de45e44-9fe3-4888-ae82-f8b4c934eb30-profile_image-150x150.png', roleKey: 'role-yapping', descKey: 'desc-yapping', url: 'https://twitch.tv/punasipeli' },
+            { name: 'Reetta90', img: 'https://static-cdn.jtvnw.net/jtv_user_pictures/89bdf63c-0432-4c27-a67a-5949094c981b-profile_image-150x150.jpeg', roleKey: 'role-pos', descKey: 'desc-pos', url: 'https://twitch.tv/reetta90' }
+        ];
+
+        const tabKeys = { 'home': 'nav-home', 'botti': 'nav-bot', 'aikataulu': 'nav-schedule', 'laitteisto': 'nav-hardware', 'suositukset': 'nav-community' };
+        
+        const i18n = {
+            fi: { 
+                "nav-home": "Etusivu", "nav-bot": "Botti", "nav-schedule": "Aikataulu", "nav-hardware": "Laitteisto", "nav-community": "Suositukset", 
+                "profile-desc": "Suomalainen sisällöntuottaja ja striimaaja.", 
+                "discord-title": "Milloin mennään?", "discord-desc": "Tarkat aikataulut ja ilmoitukset löydät Discord-palvelimeltamme.", "btn-discord-schedule": "Discord Aikataulu", 
+                "hw-title": "Tietokoneen osat", "hw-copy-hint": "(Klikkaa osaa kopioidaksesi)", "hw-comp-title": "Komponentit", "hw-storage-title": "Tallennus",
+                "hw-gpu": "Näytönohjain", "hw-cpu": "Suoritin", "hw-ram": "Muisti", "hw-mic": "Audio", "hw-cam": "Video", "hw-kb": "Näppäimistö", "hw-mouse": "Hiiri", 
+                "rec-title": "Teris Suosittelee", "footer-tag": "Digitaalinen jalanjälki", "link-bot": "TeräsBot", "toast-copied": "Kopioitu!",
+                "bot-desc": "Älykäs Python-pohjainen botti Discordiin. Sisältää Google Gemini AI -integraation, Twitch-seurannan ja täydelliset moderointityökalut.",
+                "bot-f1": "AI-Integraatio: Älykkäät vastaukset Google Geminin avulla", "bot-f2": "Edistynyt Lokitus: Seuraa muokkauksia, poistoja ja liittymisiä", "bot-f3": "Viihde & Musiikki: Täysi tuki musiikille ja yhteisöpeleille", 
+                "bot-cmd-title": "Käyttöliittymä / Slash-Komennot", "bot-btn": "Kutsu botti palvelimellesi",
+                "cat-mod": "🛡️ Moderointi & Hallinta", "cat-ai": "🤖 AI & Viihde", "cat-stream": "📋 Striimit & Muut",
+                "cmd-log": "- Lokikanava", "cmd-timeout": "- Timeout jäsenelle", "cmd-clear": "- Poista viestejä", "cmd-welcome": "- Tervetulokanava",
+                "cmd-ai": "- Gemini AI vastaus", "cmd-play": "- Musiikki YouTube/Spotify", "cmd-poll": "- Luo äänestys", "cmd-confess": "- Anonyymi viesti",
+                "cmd-tw-add": "- Seuraa striimaajaa", "cmd-kick-list": "- Kick-seurannat", "cmd-help": "- Kaikki komennot", "cmd-stats": "- Botin tila",
+                "role-fun": "Hauskanpito kärjessä", "desc-fun": "Pelataan laidasta laitaan.", "role-crime": "True Crime & Viihde", "desc-crime": "Mahtavaa viihdettä.", "role-yapping": "Yapping Master", "desc-yapping": "Tarinapelejä ja huumoria.", "role-pos": "Positiivista Energiaa", "desc-pos": "Suurella sydämellä."
+            },
+            sv: { 
+                "nav-home": "Startsida", "nav-bot": "Bot", "nav-schedule": "Schema", "nav-hardware": "Hårdvara", "nav-community": "Rekommenderar", 
+                "profile-desc": "Finländsk innehållsskapare och streamare.", 
+                "discord-title": "När kör vi?", "discord-desc": "Exakta tider hittar du på Discord.", "btn-discord-schedule": "Schema på Discord", 
+                "hw-title": "Datorkomponenter", "hw-copy-hint": "(Klicka på en del för att kopiera)", "hw-comp-title": "Komponenter", "hw-storage-title": "Lagring",
+                "hw-gpu": "Grafikkort", "hw-cpu": "Processor", "hw-ram": "Minne", "hw-mic": "Audio", "hw-cam": "Video", "hw-kb": "Tangentbord", "hw-mouse": "Mus", 
+                "rec-title": "Teris Rekommenderar", "footer-tag": "Digitalt fotavtryck", "link-bot": "TeräsBot", "toast-copied": "Kopierad!",
+                "bot-desc": "Smart Python-baserad bot för Discord. Inkluderar Google Gemini AI, Twitch-bevakning och moderering.",
+                "bot-f1": "AI-Integration: Smarta svar med Google Gemini", "bot-f2": "Avancerad loggning: Spåra ändringar och raderingar", "bot-f3": "Nöje & Musik: Fullt stöd för musik och spel", 
+                "bot-cmd-title": "Gränssnitt / Slash-kommandon", "bot-btn": "Bjud in boten till din server",
+                "cat-mod": "🛡️ Moderering & Hantering", "cat-ai": "🤖 AI & Nöje", "cat-stream": "📋 Streams & Mer",
+                "cmd-log": "- Loggkanal", "cmd-timeout": "- Timeout för medlem", "cmd-clear": "- Rensa meddelanden", "cmd-welcome": "- Välkomstkanal",
+                "cmd-ai": "- Gemini AI svar", "cmd-play": "- Musik YouTube/Spotify", "cmd-poll": "- Skapa omröstning", "cmd-confess": "- Anonymt meddelande",
+                "cmd-tw-add": "- Följ streamare", "cmd-kick-list": "- Kick-listor", "cmd-help": "- Alla kommandon", "cmd-stats": "- Botstatus",
+                "role-fun": "Nöje i fokus", "desc-fun": "Vi spelar allt möjligt.", "role-crime": "True Crime & Underhållning", "desc-crime": "Grym underhållning.", "role-yapping": "Yapping Master", "desc-yapping": "Storyspel och humor.", "role-pos": "Positiv energi", "desc-pos": "Med ett stort hjärta."
+            },
+            en: { 
+                "nav-home": "Home", "nav-bot": "Bot", "nav-schedule": "Schedule", "nav-hardware": "Hardware", "nav-community": "Recommendations", 
+                "profile-desc": "Finnish content creator and streamer.", 
+                "discord-title": "When do we start?", "discord-desc": "Exact times on Discord.", "btn-discord-schedule": "Discord Schedule", 
+                "hw-title": "Computer Parts", "hw-copy-hint": "(Click an item to copy)", "hw-comp-title": "Components", "hw-storage-title": "Storage",
+                "hw-gpu": "Graphics Card", "hw-cpu": "Processor", "hw-ram": "Memory", "hw-mic": "Audio", "hw-cam": "Video", "hw-kb": "Keyboard", "hw-mouse": "Mouse", 
+                "rec-title": "Teris Recommends", "footer-tag": "Digital Footprint", "link-bot": "TeräsBot", "toast-copied": "Copied!",
+                "bot-desc": "Smart Python-based bot for Discord. Features Google Gemini AI, Twitch tracking, and moderation tools.",
+                "bot-f1": "AI Integration: Smart answers via Google Gemini", "bot-f2": "Advanced Logging: Track edits, deletes, and joins", "bot-f3": "Fun & Music: Music player and community games", 
+                "bot-cmd-title": "Interface / Slash Commands", "bot-btn": "Invite bot to your server",
+                "cat-mod": "🛡️ Moderation & Admin", "cat-ai": "🤖 AI & Fun", "cat-stream": "📋 Streams & More",
+                "cmd-log": "- Log channel", "cmd-timeout": "- Timeout member", "cmd-clear": "- Clear messages", "cmd-welcome": "- Welcome channel",
+                "cmd-ai": "- Gemini AI response", "cmd-play": "- Play YouTube/Spotify", "cmd-poll": "- Create poll", "cmd-confess": "- Anonymous message",
+                "cmd-tw-add": "- Follow streamer", "cmd-kick-list": "- Kick follows", "cmd-help": "- All commands", "cmd-stats": "- Bot stats",
+                "role-fun": "Fun first", "desc-fun": "Playing everything.", "role-crime": "True Crime & Entertainment", "desc-crime": "Great entertainment.", "role-yapping": "Yapping Master", "desc-yapping": "Story games and humor.", "role-pos": "Positive energy", "desc-pos": "With a big heart."
+            }
+        };
+
+        let currentLang = localStorage.getItem('terastupa-lang') || 'fi';
+        
+        function setLang(l) {
+            currentLang = l; localStorage.setItem('terastupa-lang', l);
+            document.querySelectorAll('[data-i18n]').forEach(e => { const k = e.getAttribute('data-i18n'); if(i18n[l][k]) e.innerText = i18n[l][k]; });
+            renderHardware(); renderStreamers();
+            ['fi','sv','en'].forEach(x => {
+                const el = document.getElementById(`btn-${x}`);
+                el.className = x===l ? 'text-white font-bold' : 'hover:text-white transition opacity-50';
+            });
+            document.documentElement.lang = l;
+            const activeBtn = document.querySelector('.nav-btn.active-tab');
+            if(activeBtn) updateTitle(activeBtn.id.replace('tab-', ''));
+        }
+
+        function renderHardware() {
+            const cTitle = i18n[currentLang]["hw-comp-title"];
+            const sTitle = i18n[currentLang]["hw-storage-title"];
+            const compHTML = components.map(c => `<div onclick="copyText('${c.val}')" class="flex justify-between items-center p-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 cursor-pointer group mb-2"><span data-i18n="${c.key}" class="text-zinc-400 text-xs group-hover:text-white">${i18n[currentLang][c.key]}</span><span class="text-white text-sm font-bold italic text-right pl-2">${c.val}</span></div>`).join('');
+            const storHTML = storage.map(s => `<li onclick="copyText('${s}')" class="flex justify-between bg-zinc-900/40 p-2 rounded-lg border border-zinc-800 hover:bg-zinc-800 cursor-pointer mb-2 text-[10px] md:text-xs text-zinc-300"><span>${s}</span></li>`).join('');
+            document.getElementById('hw-container').innerHTML = `<div><h4 class="text-[10px] font-black text-zinc-600 uppercase mb-3 md:mb-4 border-b border-zinc-800">${cTitle}</h4>${compHTML}</div><div><h4 class="text-[10px] font-black text-zinc-600 uppercase mb-3 md:mb-4 border-b border-zinc-800">${sTitle}</h4><ul>${storHTML}</ul></div>`;
+            document.getElementById('peripherals-container').innerHTML = peripherals.map(p => `<div onclick="copyText('${p.val}')" class="text-center p-3 md:p-4 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-zinc-600 cursor-pointer active:scale-95"><p data-i18n="${p.key}" class="text-[9px] font-black text-zinc-500 uppercase mb-1 md:mb-2">${i18n[currentLang][p.key]}</p><p class="text-[10px] md:text-xs font-bold text-white break-words">${p.val}</p></div>`).join('');
+        }
+
+        function renderStreamers() {
+            document.getElementById('rec-container').innerHTML = streamers.map(s => `
+                <div class="group bg-[#131316] rounded-[2rem] p-6 md:p-8 border border-zinc-800 hover:border-emerald-500 hover:scale-105 transition duration-300 flex flex-col h-full items-center text-center">
+                    <img src="${s.img}" alt="${s.name}" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover mb-4 md:mb-6 shadow-xl">
+                    <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-tighter">${s.name}</h3>
+                    <p class="text-[9px] md:text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-3 md:mb-4">${i18n[currentLang][s.roleKey]}</p>
+                    <p class="text-zinc-400 text-xs md:text-sm mb-6 md:mb-8 flex-grow leading-relaxed font-light">${i18n[currentLang][s.descKey]}</p>
+                    <a href="${s.url}" target="_blank" class="text-[10px] md:text-xs font-black text-zinc-600 hover:text-emerald-400 uppercase tracking-wider mt-auto p-2 border border-zinc-800 rounded-full w-full">TWITCH.TV</a>
+                </div>`).join('');
+        }
+
+        function changeTab(t) {
+            document.querySelectorAll('.tab-content').forEach(e => e.classList.remove('active-content'));
+            const content = document.getElementById(`content-${t}`);
+            if(content) content.classList.add('active-content');
+            
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-tab'));
+            const tab = document.getElementById(`tab-${t}`);
+            if(tab) tab.classList.add('active-tab');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            updateTitle(t);
+        }
+
+        function updateTitle(t) { 
+            const n = i18n[currentLang][tabKeys[t] || 'nav-home'] || 'Etusivu'; 
+            document.title = `${config.siteTitle} - ${n}`; 
+        }
+
+        function copyText(t) {
+            navigator.clipboard.writeText(t).then(() => {
+                const toast = document.getElementById('toast');
+                toast.style.transform = "translateY(0)";
+                setTimeout(() => toast.style.transform = "translateY(150%)", 2000);
+            });
+        }
+        
+        function triggerSpin() { const l = document.getElementById('nav-logo'); l.classList.add('animate-spin-fast'); setTimeout(()=>l.classList.remove('animate-spin-fast'), 600); }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHardware(); renderStreamers(); setLang(currentLang);
+            const initialTab = window.location.hash.replace('#','') || 'home';
+            changeTab(initialTab);
+        });
+    </script>
+</body>
+</html>
